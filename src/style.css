@@ -87,8 +87,8 @@ body {
   text-overflow: ellipsis;
 }
 
-header > a,
-#root > div > h1 {
+/* #root > div > h1, */
+header > a {
   display: inline-block;
   background-image: url(http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png);
   filter: brightness(150%);
