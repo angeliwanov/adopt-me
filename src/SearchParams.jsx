@@ -22,8 +22,9 @@ const SearchParams = () => {
   const [adoptedPet, _] = useContext(AdoptedPetContext);
 
   return (
-    <div className="search-params">
+    <div className="mx-auto my-0 w-11/12">
       <form
+        className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
@@ -42,11 +43,18 @@ const SearchParams = () => {
         ) : null}
         <label htmlFor="">
           Location
-          <input id="location" placeholder="Location" name="location" />
+          <input
+            className="search-input"
+            type="text"
+            id="location"
+            placeholder="Location"
+            name="location"
+          />
         </label>
         <label htmlFor="animal">
           Animal
           <select
+            className="search-input"
             name="animal"
             id="animal"
             value={animal}
@@ -62,14 +70,21 @@ const SearchParams = () => {
         </label>
         <label htmlFor="breed">
           Breed
-          <select name="breed" id="breed" disabled={breeds.length === 0}>
+          <select
+            className="search-input grayed-out-disabled"
+            name="breed"
+            id="breed"
+            disabled={breeds.length === 0}
+          >
             <option />
             {breeds.map((breed) => (
               <option key={breed}>{breed}</option>
             ))}
           </select>
         </label>
-        <button>Submit</button>
+        <button className="rounded border-none bg-orange-500 px-6 py-2 text-white hover:opacity-50">
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>
