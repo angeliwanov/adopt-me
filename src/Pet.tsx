@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
+import { Animal } from "./APIResponsesTypes";
+import { FunctionComponent } from "react";
 
-const Pet = ({ name, animal, images, location, id, breed }) => {
+interface IProps {
+  name: string;
+  animal: Animal;
+  breed: string;
+  images: string[];
+  location: string;
+  id: number;
+}
+
+const Pet = (props: IProps) => {
+  const { name, animal, breed, images, location, id } = props;
   let hero = "http:'//pets-images.dev-apis.com/pets/none.jpg";
 
   if (images.length > 0) {
@@ -9,9 +21,9 @@ const Pet = ({ name, animal, images, location, id, breed }) => {
 
   return (
     <Link to={`/details/${id}`} className="pet">
-      <dir className="image-container">
+      <div className="image-container">
         <img src={hero} alt={name} />
-      </dir>
+      </div>
       <div className="info">
         <h1>{name}</h1>
         <h2>

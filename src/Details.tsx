@@ -8,11 +8,14 @@ import ErrorBoundary from "./ErrorBoundary";
 import Modal from "./Modal";
 
 const Details = () => {
+  const { id } = useParams();
+  if (!id) {
+    throw new Error("there is no id.");
+  }
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setAdoptedPet] = useContext(AdoptedPetContext);
-  const { id } = useParams();
   const result = useQuery(["details", id], fetchPet);
 
   if (result.isLoading) {
@@ -23,7 +26,10 @@ const Details = () => {
     );
   }
 
-  const pet = result.data.pets[0];
+  const pet = result?.data?.pets[0];
+  if (!pet) {
+    throw new Error("no pet");
+  }
 
   return (
     <div className="details">
@@ -56,10 +62,10 @@ const Details = () => {
   );
 };
 
-function DetailsErrorBoundary(props) {
+function DetailsErrorBoundary() {
   return (
     <ErrorBoundary>
-      <Details {...props} />
+      <Details />
     </ErrorBoundary>
   );
 }
